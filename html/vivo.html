@@ -1,0 +1,236 @@
+
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML5 Example</title>
+<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+	body {
+		background:#FFF;
+		font-family:"Helvetica Neue", sans-serif;
+		color:rgba(255,255,255,.8);
+    	text-align:center;
+	}
+	.menu1{
+		margin-left: 300px;
+	}
+	.menu{
+		background:rgb(47,47,47);
+		height:45px;
+	}
+	.menu ul li{
+		list-style:none;
+		display:block;
+		float:left;
+		position:relative;
+	}
+	.menu ul li a{
+		display:block;
+		padding:0 35px;
+		line-height:45px;
+		font-size:12px;
+		color:#FFF;
+		text-decoration:none;
+	}
+	.menu ul li ul{
+		display:none;
+		position:absolute;
+		top:45px;
+		background:rgb(47,47,47);
+	}
+	.menu ul li:hover ul{
+		display:block;
+	}
+
+	.menu ul li ul li{
+		width:100%;
+		border-right:0;
+	}
+	.menu ul li ul li a{
+		font-size:10px;
+		line-height:25px;
+	}
+	.menu ul li:hover{
+		background:rgb(96,96,96);
+	}
+	#slideshow{
+    width:2000px;
+    height:1000px;
+    overflow:hidden;
+    margin-top: 30px;
+    margin-left: 0px;
+    position:relative;
+	}
+	#slideshow ul, #slideshow ul li, #slideshow-nav{
+    list-style:none;
+    position:absolute;
+	}
+	#slideshow-nav{
+    width:100%;
+    bottom:20px;
+    text-align:center;
+	}
+	#slideshow-nav span{
+	    display:inline-block;
+	    border-radius:50%;
+	    width:15px;
+	    height:15px;
+	    font-size:0;
+	    background:rgba(255,255,255,.3);
+	    transition:all .5s;
+	    -webkit-transition:all .5s;
+	    margin:0 7px;
+	    cursor:pointer;
+	    user-select:none; 
+	    -webkit-user-select:none;
+	}
+	#slideshow-nav span.active{
+	    background:#FFF;
+	}
+		.container{
+		color: #ffffff;
+		font-family: sans-serif;
+		background: url(../images/gre.jpg) center center;
+		background-size: cover;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 450px;
+		position: relative;
+		text-align: center;
+		position: absolute;
+		top: 800px;
+	}
+	h1{
+    	font-size:54px;
+    	margin-bottom: 20px;
+    }
+    .img-mid a{
+    	font-size:18px;
+    	color: #fff;
+    	border: 1px solid #fff;
+    	border-radius:3px;
+    	padding:10px 100px;
+    	text-decoration:none;
+    }
+    .img-mid{
+    	margin-top:175px;
+    }
+</style>
+</head>
+
+<body>
+	<div class="menu">
+		<div class="menu1">
+		<ul>
+	    <li><a href="">Xplay系列</a>
+	      <ul>
+	        <li><a href="">Xplay6</a></li>
+	        <li><a href=""Xplay5旗舰版</a></li>
+	        <li><a href="">Xplay5</a></li>
+	        <li><a href="">Xplay3S</a></li>
+	        <li><a href="">Xpla</a></li>
+	   	  </ul>
+	    </li>
+	    <li><a href="">X系列</a>
+	      <ul>
+	        <li><a href="">X21</a></li>
+	        <li><a href="">X20</a></li>
+	        <li><a href="">X20P</a></li>
+	        <li><a href="">X9s</a></li>
+	        <li><a href="">X9sP</a></li>
+	   	  </ul>
+	    </li>
+	    <li><a href="">Y系列</a>
+	      <ul>
+	        <li><a href="">Y85</a></li>
+	        <li><a href="">Y75s</a></li>
+	        <li><a href="">Y71</a></li>
+	        <li><a href="">Y75</a></li>
+	        <li><a href="">Y79</a></li>
+	      </ul>
+	    </li>
+	    <li><a href="">商城</a></li>
+	    <li><a href="">Funtouch OS</a></li>
+	    <li><a href="">服务</a></li>
+	    <li><a href="">社区</a></li>
+	  </ul>
+	</div>
+	</div>
+	<div id="slideshow">
+  <ul>
+    <li><img src="../images/p9.jpg" width="2000px" height="800px"></li>
+    <li><img src="../images/p10.jpg" width="2000px" height="800px"></li>
+    <li><img src="../images/p11.jpg" width="2000px" height="800px"></li>
+    <li><img src="../images/p12.jpg" width="2000px" height="800px"></li>
+  </ul>
+  <div id="slideshow-nav"></div>
+</div>
+<div class="container">
+<div class="img-mid">
+	<h1>Vivo BuyActivity</h1>
+	<a href="invite.php" id="enroll">我要参加</a>
+</div>
+</div>
+<script type="text/javascript" src="../lib/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var duration = 3000; 
+        var speed = 1000; 
+        var width = $('#slideshow').width(); 
+        var curIndex = 0; 
+        var totalIndex = $('#slideshow > ul > li').length; 
+        var timer; 
+        $('#slideshow > ul > li').each(function(index) {
+            $(this).css("left", index*width+"px"); 
+            $('#slideshow-nav').append("<span>"+(index+1)+"</span>");
+    	});
+        $('#slideshow-nav > span').each(function(index) {
+            $(this).attr("index", index); 
+            $(this).click(function(){ 
+                curIndex = $(this).attr("index")-1; 
+                clearTimeout(timer);
+                move(); 
+            });
+    	});
+        $('#slideshow-nav > span').eq(0).addClass("active"); 
+        var firstChild = $('#slideshow > ul > li').eq(0).clone(); 
+        $('#slideshow > ul').append(firstChild); 
+        firstChild.css("left", totalIndex*width+"px"); 
+        function move(){
+            curIndex++; 
+            if(curIndex>totalIndex){ 
+                curIndex = 1; 
+                $('#slideshow > ul').css("left", "0px"); 
+            }
+            for(var i=0; i < totalIndex; i++){
+                $('#slideshow-nav > span').eq(i).removeClass("active");
+            }
+            if(curIndex === totalIndex){
+                $('#slideshow-nav > span').eq(0).addClass("active"); 
+            }else{
+                $('#slideshow-nav > span').eq(curIndex).addClass("active"); 
+            }
+            $('#slideshow > ul').animate({left:width*curIndex*-1+"px"},speed); 
+            timer = setTimeout(move,duration+speed); 
+       	 }
+        timer = setTimeout(move,duration); 
+    	});
+    
+</script>
+<script type="text/javascript">
+	var enroll = document.getElementById("enroll");
+	enroll.onclick = function(e){
+	e.preventDefault();
+	enroll.innerHTML = "参加成功";
+	enroll.style.background = "#27cb8b";
+	enroll.style.borderColor = "#27cb8b";
+}
+</script>
+</body>
+</html>
